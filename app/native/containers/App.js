@@ -8,20 +8,23 @@ import HelloWorld from '../components/HelloWorld';
 // actions
 import {
   toggleColor,
+  evalQuery,
 } from '../../actions/actions';
 
 /** The app entry point */
 class ReactNativeWebHelloWorld extends Component {
   render() {
     // injected by connect call
-    const {dispatch, color, data} = this.props;
+    const {dispatch, color, data, query, result} = this.props;
 
     return (
       <View style={appStyle.reactNativeWeb}>
         <Header />
         <HelloWorld
-          onPress={() => dispatch(toggleColor())}
+          onChangeText={(e) => dispatch(evalQuery(e))}
           color={color}
+          query={query}
+          result={result}
         />
       </View>
     );

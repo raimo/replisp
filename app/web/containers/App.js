@@ -6,20 +6,24 @@ import HelloWorld from '../components/HelloWorld';
 // actions
 import {
   toggleColor,
+  exampleAsync,
+  evalQuery,
 } from '../../actions/actions';
 
 /** The app entry point */
 class ReactNativeWebHelloWorld extends Component {
   render() {
     // injected by connect call
-    const { dispatch, color, data } = this.props;
+    const { dispatch, color, data, result, query } = this.props;
 
     return (
       <div className="react-native-web">
         <Header />
         <HelloWorld
-          onClick={() => dispatch(toggleColor())}
+          onChange={(e) => dispatch(evalQuery(e))}
           color={color}
+          result={result}
+          query={query}
         />
       </div>
     );

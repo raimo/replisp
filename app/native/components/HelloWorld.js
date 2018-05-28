@@ -2,27 +2,35 @@ import React, { Component, PropTypes } from 'react';
 import {
   View,
   Text,
+  TextInput,
   StyleSheet,
 } from 'react-native';
 
 export default class HelloWorld extends Component {
+  componentDidMount() {
+    this.props.onChangeText(this.props.query);
+  }
   render() {
-    const { onPress, color } = this.props;
+    const { onChangeText, color, query, result } = this.props;
     const style = StyleSheet.create({
       helloWorld: {
         color: color,
-        textAlign: 'center',
+        fontSize: 20,
+        textAlign: 'left',
       }
     });
     return (
       <View>
-        <Text onPress={onPress} style={style.helloWorld}>Hello World</Text>
+        <TextInput multiline={true} numberOfLines={12} onChangeText={onChangeText} style={style.helloWorld}>{query}</TextInput>
+        <Text style={style.helloWorld}>{result}</Text>
       </View>
     );
   }
 }
 
 HelloWorld.propTypes = {
-  onPress: PropTypes.func.isRequired,
+  onChangeText: PropTypes.func.isRequired,
   color: PropTypes.string.isRequired,
+  result: PropTypes.string,
+  query: PropTypes.string,
 }
